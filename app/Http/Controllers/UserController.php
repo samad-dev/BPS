@@ -1,10 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Routing\Controller;
 
 class UserController extends Controller
 {
@@ -17,53 +17,33 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $hashedPassword = Hash::make($data['password']);
-        // You need to adjust the field names according to your table structure
-        DB::insert('INSERT INTO users (first_name, last_name, company_id, name, email, designation_id,  password) VALUES ( ?, ?, ?, ?, ?, ?, ?)', [
-            $data['first_name'],
-            $data['last_name'],
-            $data['company_id'],
-            $data['name'],
-            $data['email'],
-            $data['designation_id'],
-            $hashedPassword,
-        ]);
+        $hashedPassword = Hash::make($data['password_hash']);
+
+        DB::insert('INSERT INTO users ( user_type, organization_name, office_location, username, password_hash, email, role, created_by, created_at) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            [ $data['user_type'], $data['organization_name'], $data['office_location'], $data['username'], $hashedPassword, $data['email'], $data['role'], $data['created_by'], now()]);
+        
         return response()->json(['message' => 'User created successfully']);
     }
 
-    public function show($id)
+    public function show($user_id)
     {
-        $user = DB::select('SELECT * FROM users WHERE id = ?', [$id]);
+        $user = DB::select('SELECT * FROM users WHERE user_id = ?', [$user_id]);
         return response()->json($user);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $user_id)
     {
         $data = $request->all();
-        $hashedPassword = Hash::make($data['password']);
-        // You need to adjust the field names according to your table structure
-        DB::update('UPDATE users SET first_name = ?, last_name = ?, company_id = ?, name = ?, email = ?, designation_id = ?,  password = ? WHERE id = ?', [
-            $data['first_name'],
-            $data['last_name'],
-            $data['company_id'],
-            $data['name'],
-            $data['email'],
-            $data['designation_id'],
-            $hashedPassword,
-            $id
-        ]);
+
+        DB::update('UPDATE users SET user_type = ?, organization_name = ?, office_location = ?, username = ?, email = ?, role = ?, created_by = ? WHERE user_id = ?',
+            [$data['user_type'], $data['organization_name'], $data['office_location'], $data['username'], $data['email'], $data['role'], $data['created_by'], $user_id]);
+
         return response()->json(['message' => 'User updated successfully']);
     }
 
-    public function companywise($id)
+    public function destroy($user_id)
     {
-        $status = DB::select('SELECT * FROM users WHERE company_id = ?', [$id]);
-        return response()->json($status);
-    }
-
-    public function destroy($id)
-    {
-        DB::delete('DELETE FROM users WHERE id = ?', [$id]);
+        DB::delete('DELETE FROM users WHERE user_id = ?', [$user_id]);
         return response()->json(['message' => 'User deleted successfully']);
     }
 }

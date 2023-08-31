@@ -15657,7 +15657,7 @@ body[data-layout-mode=dark] .card-footer,
 body[data-layout-mode=dark] .card-header,
 body[data-layout-mode=dark] .modal-content,
 body[data-layout-mode=dark] .offcanvas {
-    background-color: #1f2224;
+    background-color: #01253c;
     border-color: #282c2f
 }
 
@@ -15991,8 +15991,8 @@ body[data-layout-mode=dark] .nav-tabs .nav-link:hover {
 }
 
 body[data-layout-mode=dark] .nav-tabs .nav-link.active {
-    background-color: #1f2224;
-    border-color: #282c2e #282c2e #1f2224
+    background-color: #01253c;
+    border-color: #282c2e #282c2e #01253c
 }
 
 body[data-layout-mode=dark] .nav-pills .nav-link {
@@ -16100,11 +16100,11 @@ body[data-layout-mode=dark] .table-active th {
 
 body[data-layout-mode=dark] .table-responsive::-webkit-scrollbar-thumb {
     background-color: rgba(255, 255, 255, .075);
-    border: 2px solid #1f2224
+    border: 2px solid #01253c
 }
 
 body[data-layout-mode=dark] .table-responsive::-webkit-scrollbar-track {
-    background-color: #1f2224
+    background-color: #01253c
 }
 
 .pagination-rounded .page-link {
@@ -16119,7 +16119,7 @@ body[data-layout-mode=dark] .table-responsive::-webkit-scrollbar-track {
 }
 
 body[data-layout-mode=dark] .page-link {
-    background-color: #1f2224;
+    background-color: #01253c;
     border-color: #282c2e;
     color: #d8dbdd
 }
@@ -16131,7 +16131,7 @@ body[data-layout-mode=dark] .page-link:hover {
 
 body[data-layout-mode=dark] .page-item.disabled .page-link {
     color: #b0b6bc;
-    background-color: #1f2224;
+    background-color: #01253c;
     border-color: #282c2e
 }
 
