@@ -16,7 +16,7 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -24,6 +24,9 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 
 Route::get('/index', function () {
     return view('dashboard/index');
+});
+Route::get('/project', function () {
+    return view('projects/project');
 });
 
     // Vendor Types

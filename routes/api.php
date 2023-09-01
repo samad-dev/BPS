@@ -7,6 +7,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\BuildingPermitController;
 
-Route::resource('users', UserController::class);
+Route::get('users', [ UserController::class,'index']);
+Route::post('users', [ UserController::class,'store']);
+Route::get('users/{user_id}', 'UserController@show');
+Route::put('users/{user_id}', 'UserController@update');
+Route::delete('users/{user_id}', 'UserController@destroy');
 Route::resource('projects', ProjectController::class);
 Route::resource('building_permits', BuildingPermitController::class);
