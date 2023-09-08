@@ -43,14 +43,48 @@
                     </a>
                 </li>
 
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow">
-                        <i class="mdi mdi-account-child-circle nav-icon"></i>
-                        <span class="menu-item" data-key="t-ecommerce">Modules </span>
+
+                <li class="">
+                    <a href="javascript: void(0);" class="has-arrow mm-collapsed" aria-expanded="false">
+                        <i class="bx bx-share-alt icon nav-icon"></i>
+                        <span class="menu-item" data-key="t-multi-level">Modules</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="/Permission"data-key="t-calendar">Building Permit</a></li>
-                        <li><a href="/role" data-key="t-calendar">Development permit</a></li>
+                    <ul class="sub-menu mm-collapse" aria-expanded="true" style="">
+                        <li class="disabled"><a href="/Permission" data-key="t-disabled-item">Development permit</a>
+                        </li>
+                        <li class=""><a href="javascript: void(0);" class="has-arrow mm-collapsed"
+                                data-key="t-level-1.2" aria-expanded="false">Building Permit</a>
+                            <ul class="sub-menu mm-collapse" aria-expanded="true" style="">
+                                <li><a href="/permit_status" data-key="t-level-2.1">Permit Status</a></li>
+                                <li><a href="/permit_type" data-key="t-level-2.2">Permit Type</a></li>
+                                <li><a href="/building_permits" data-key="t-level-2.2">Building Permits</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="">
+                    <a href="javascript: void(0);" class="has-arrow mm-collapsed" aria-expanded="false">
+                        <i class="bx bx-user-circle icon nav-icon"></i>
+                        <span class="menu-item" data-key="t-contacts">Teams</span>
+                    </a>
+                    <ul class="sub-menu mm-collapse" aria-expanded="false" style="">
+                        <li><a href="/team" data-key="t-user-grid">Teams</a></li>
+                        <li><a href="/assign_user_team" data-key="t-user-grid">Assign users to Teams</a></li>
+
+
+                    </ul>
+                </li>
+                <li class="">
+                    <a href="javascript: void(0);" class="has-arrow mm-collapsed" aria-expanded="false">
+                        <i class="bx bx-user-circle icon nav-icon"></i>
+                        <span class="menu-item" data-key="t-contacts">Inspection</span>
+                    </a>
+                    <ul class="sub-menu mm-collapse" aria-expanded="false" style="">
+
+                        <li><a href="/assign_team_user" data-key="t-user-grid">Assign users or Teams to Inspection</a>
+                        </li>
+
                     </ul>
                 </li>
                 <li>
@@ -95,11 +129,11 @@
                         <span class="menu-item" data-key="t-calendar">Users</span>
                     </a>
                 </li>
-               
-                
-                
-              
-                
+
+
+
+
+
             </ul>
         </div>
         <!-- Sidebar -->

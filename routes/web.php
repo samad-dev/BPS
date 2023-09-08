@@ -28,6 +28,25 @@ Route::get('/index', function () {
 Route::get('/project', function () {
     return view('projects/project');
 });
+Route::get('/permit_status', function () {
+    return view('permits/permit_status');
+});
+Route::get('/permit_type', function () {
+    return view('permits/permit_type');
+});
+Route::get('/building_permits', function () {
+    return view('permits/buliding_permits');
+});
+Route::get('/team', function () {
+    return view('team/team');
+});
+Route::get('/assign_user_team', function () {
+    return view('team/assign_user_team');
+});
+Route::get('/assign_team_user', function () {
+    return view('team/assign_to_user_inpection');
+});
+
 
     // Vendor Types
     // Route::delete('vendor-types/destroy', 'VendorTypeController@massDestroy')->name('vendor-types.massDestroy');

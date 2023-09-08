@@ -7,7 +7,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Tickets | BPS</title>
+    <title>Tickets | Service Manager</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{-- <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" /> --}}
     <meta content="Themesdesign" name="author" />
@@ -125,7 +125,7 @@
                 <div class="col-6">
                     <div class="mb-3 row">
                         <label for="formrow-inputState" class="form-label">Ticket #</label>
-                        <input class="form-control " type="text" name="ticket_n" id="ticket_no" data-model="post"
+                        <input class="form-control" type="text" name="ticket_n" id="ticket_no" data-model="post"
                             disabled="">
                     </div>
                 </div>
