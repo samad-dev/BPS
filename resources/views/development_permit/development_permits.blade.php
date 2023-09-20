@@ -7,7 +7,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Permits | BPS</title>
+    <title>Development Permits | BPS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{-- <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" /> --}}
     <meta content="Themesdesign" name="author" />
@@ -52,7 +52,7 @@
                                     <div class="row">
                                         <div class="col-md-2">
 
-                                            <h4 class="card-title mb-0 pt-3">Permits</h4>
+                                            <h4 class="card-title mb-0 pt-3">Development Permits</h4>
                                         </div>
                                         <div class="col-md-6">
                                             {{-- <button type="button" class="btn btn-soft-primary waves-effect waves-light"  data-bs-toggle="modal" data-bs-target="#myModal">
@@ -126,7 +126,7 @@
     <!-- right offcanvas -->
     <div class="offcanvas offcanvas-end w-50" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
-            <h5 id="offcanvasRightLabel">Create Permits</h5>
+            <h5 id="offcanvasRightLabel">Create Development Permits</h5>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <hr>
@@ -166,19 +166,6 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="mb-3">
-                            <label for="formrow-firstname" class="form-label">Development Type</label>
-                            <!-- <input type="text" class="form-control" id="name" name='name'> -->
-                            <select class="form-control select_" name="choices-single-default" id="development"
-                                name='development' placeholder="This is a search placeholder">
-                                <option value=""></option>
-                                <option value="Building_permit">Building Permit</option>
-                                <option value="Development_permit">Development Permit</option>
-
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="mb-3">
                             <label for="formrow-firstname" class="form-label">Permit Status</label>
                             <!-- <input type="text" class="form-control" id="name" name='name'> -->
                             <select class="form-control select_" name="choices-single-default" id="permit_status"
@@ -200,7 +187,8 @@
                             <input type="date" class="form-control" id="approval_date" name='approval_date'>
                         </div>
                     </div>
-
+                </div>
+                <div class="row">
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-inputCity" class="form-label">Expriry Date</label>
@@ -220,7 +208,8 @@
                             <input type="file" class="form-control" id="owner_doc" name='owner_doc'>
                         </div>
                     </div>
-              
+                </div>
+                <div class="row">
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-Latitude" class="form-label">Drawing Doc</label>
@@ -304,9 +293,6 @@ $(document).ready(function() {
         removeItemButton: !0,
     })
     new Choices("#applicant", {
-        removeItemButton: !0,
-    })
-    new Choices("#development", {
         removeItemButton: !0,
     })
 

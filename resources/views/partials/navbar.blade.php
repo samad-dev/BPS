@@ -50,14 +50,24 @@
                         <span class="menu-item" data-key="t-multi-level">Modules</span>
                     </a>
                     <ul class="sub-menu mm-collapse" aria-expanded="true" style="">
-                        <li class="disabled"><a href="/Permission" data-key="t-disabled-item">Development permit</a>
-                        </li>
-                        <li class=""><a href="javascript: void(0);" class="has-arrow mm-collapsed"
-                                data-key="t-level-1.2" aria-expanded="false">Building Permit</a>
+                        <!-- <li class="disabled"><a href="/Permission" data-key="t-disabled-item">Development permit</a>
+                        </li> -->
+
+                        <!-- <li class=""><a href="javascript: void(0);" class="has-arrow mm-collapsed"
+                                data-key="t-level-1.2" aria-expanded="false">Development permit</a>
                             <ul class="sub-menu mm-collapse" aria-expanded="true" style="">
                                 <li><a href="/permit_status" data-key="t-level-2.1">Permit Status</a></li>
                                 <li><a href="/permit_type" data-key="t-level-2.2">Permit Type</a></li>
-                                <li><a href="/building_permits" data-key="t-level-2.2">Building Permits</a></li>
+                                <li><a href="/development_permits" data-key="t-level-2.2">Building Permits</a></li>
+
+                            </ul>
+                        </li> -->
+                        <li class=""><a href="javascript: void(0);" class="has-arrow mm-collapsed"
+                                data-key="t-level-1.2" aria-expanded="false">Permit</a>
+                            <ul class="sub-menu mm-collapse" aria-expanded="true" style="">
+                                <li><a href="/permit_status" data-key="t-level-2.1">Status</a></li>
+                                <li><a href="/permit_type" data-key="t-level-2.2">Type</a></li>
+                                <li><a href="/building_permits" data-key="t-level-2.2">Permits</a></li>
 
                             </ul>
                         </li>

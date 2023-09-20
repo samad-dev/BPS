@@ -47,6 +47,10 @@ Route::get('/assign_team_user', function () {
     return view('team/assign_to_user_inpection');
 });
 
+Route::get('/development_permits', function () {
+    return view('development_permit/development_permits');
+});
+
 
     // Vendor Types
     // Route::delete('vendor-types/destroy', 'VendorTypeController@massDestroy')->name('vendor-types.massDestroy');
