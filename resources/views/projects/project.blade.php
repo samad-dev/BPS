@@ -85,7 +85,7 @@
                                                 <th>Area</th>
                                                 <th>Status</th>
                                                 <th>Created At</th>
-                                                <th>Created By</th>
+                                                <!-- <th>Created By</th> -->
                                                 <th>Edit</th>
                                                 <th>Delete</th>
                                             </tr>
@@ -154,7 +154,7 @@
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-inputCity" class="form-label">Ownership Doc</label>
-                            <input type="file" class="form-control" id="ownership_doc" name='ownership_doc'>
+                            <input type="file" class="form-control" id="ownership_doc" name='ownership_doc' accept=".pdf">
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -257,25 +257,37 @@ $(document).ready(function() {
         buttons: ['copy', 'excel', 'csv', 'pdf', 'print']
 
     });
-    // fetchtable();
+    fetchtable();
 });
 
 function fetchtable() {
     var settings = {
-        "url": "api/vendors",
+        "url": "api/projects",
         "method": "GET",
         "timeout": 0,
     };
 
     $.ajax(settings).done(function(response) {
+        // alert('response');
         console.log(response);
         table.clear().draw();
         $.each(response, function(index, data) {
+
             table.row.add([
                 index + 1,
-                data.company,
-                data.name,
-                data.email,
+                data.project_name,
+                data.start_date,
+                data.completion_date,
+                // data.ownership_doc,
+                "<a class='btn btn-soft-warning waves-effect waves-light text-center' href='storage/"+data.ownership_doc+"' target='_blank'><i class='far fa-file-pdf' style='font-size: 24px;'></a>",
+                data.estimated_cost,
+                data.location_name,
+                data.latitude,
+                data.longitude,
+                data.radius,
+                data.area,
+                data.status,
+                data.created_at,
                 '<button type="button"id="edit" name="edit" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"  onclick="editData(' +
                 data.id +
                 ')"  class="btn btn-soft-warning waves-effect waves-light"><i class="bx bx-edit-alt font-size-16 align-middle"></i></button>',
@@ -292,27 +304,30 @@ function submit() {
     var update_id = document.getElementById("hidden").value;
     console.log(update_id);
     if (update_id == 0) {
-        var subtype_val = $('#subtype').find(":selected").val();
 
         var form = new FormData();
-        form.append("company_id", "0");
-        form.append("vendor_type_id", subtype_val);
-        form.append("name", document.getElementById("name").value);
-        form.append("email", document.getElementById("email").value);
-        form.append("phone", document.getElementById("phone").value);
-        form.append("alternate_phone", document.getElementById("aphone").value);
-        form.append("address_1", document.getElementById("address_1").value);
-        form.append("address_2", document.getElementById("address_2").value);
-        form.append("latitude", document.getElementById("latitude").value);
-        form.append("longitude", document.getElementById("longitude").value);
-        form.append("city", document.getElementById("city").value);
-        form.append("state", document.getElementById("state").value);
-        form.append("country", document.getElementById("country").value);
-        form.append("zipcode", document.getElementById("zipcode").value);
-        form.append("status", '1');
+        form.append("project_name", $('#name').val());
+        form.append("start_date", $('#start_date').val());
+        form.append("completion_date", $('#end_date').val());
+
+        // form.append("ownership_doc", $('#ownership_doc').val());
+
+        var fileInput = document.getElementById('ownership_doc');
+        console.log(fileInput.files[0]);
+        form.append('ownership_doc', fileInput.files[0]);
+
+        form.append("estimated_cost", $('#estimated_cost').val());
+        form.append("location_name", $('#location').val());
+        form.append("latitude", $('#latitude').val());
+        form.append("longitude", $('#longitude').val());
+        form.append("radius", $('#radius').val());
+        form.append("area", $('#area').val());
+        form.append("project_description", $('#Property_description').val());
+        form.append("user_id", '1');
+        
 
         var settings = {
-            "url": "api/vendors",
+            "url": "api/projects",
             "method": "POST",
             "timeout": 0,
             "processData": false,
@@ -333,19 +348,24 @@ function submit() {
                     fetchtable();
                     Swal.fire(
                         'Success!',
-                        'Vendor Created Successfully',
+                        'Property Created Successfully',
                         'success'
                     )
                 },
             },
             success: function(data) {
+                console.log(data);
+
                 // $('#myModal').reset();
                 // Additional success handling if needed
             },
             error: function(xhr, textStatus, errorThrown) {
+                console.log(errorThrown);
+                console.log(xhr);
+                console.log(textStatus);
                 Swal.fire(
                     'Server Error!',
-                    'Vendor Not Created',
+                    'Property Not Created',
                     'error'
                 )
             }
@@ -392,7 +412,7 @@ function submit() {
                     fetchtable();
                     Swal.fire(
                         'Success!',
-                        'Vendor updated Successfully',
+                        'Property updated Successfully',
                         'success'
                     )
                 },
@@ -403,7 +423,7 @@ function submit() {
             error: function(xhr, textStatus, errorThrown) {
                 Swal.fire(
                     'Server Error!',
-                    'Vendor Not updated',
+                    'Property Not updated',
                     'error'
                 )
             }
@@ -483,7 +503,7 @@ function deleteData(id) {
                 fetchtable();
                 Swal.fire(
                     'Success!',
-                    'Vendor Deleted Successfully',
+                    'Property Deleted Successfully',
                     'success'
                 )
             },
@@ -495,7 +515,7 @@ function deleteData(id) {
         error: function(xhr, textStatus, errorThrown) {
             Swal.fire(
                 'Server Error!',
-                'Vendor Unit Not Deleted',
+                'Property Unit Not Deleted',
                 'error'
             )
 

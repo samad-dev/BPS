@@ -73,6 +73,8 @@
                                                 <th>Password</th>
                                                 <th>Type</th>
                                                 <th>Roles</th>
+                                                <th>Organization Name</th>
+                                                <th>Organization Location</th>
                                                 <th>Active/Inactive</th>
                                                 <th>Action</th>
                                             </tr>
@@ -127,7 +129,7 @@
                     <div class="col-lg-12">
                         <div class="mb-3">
                             <label for="formrow-email" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="u_name" name="u_name" required>
+                            <input type="email" class="form-control" id="u_email" name="u_email" required>
                         </div>
                     </div>
                     <div class="col-lg-12">
@@ -193,7 +195,8 @@
                         <label for="example-text-input" class="col-md-10 col-form-label"></label>
                         <div class="col-md-2">
 
-                            <button type="button" class="btn btn-primary waves-effect waves-light">Save</button>
+                            <button type="button" class="btn btn-primary waves-effect waves-light"
+                                onclick="submit()">Save</button>
                         </div>
                     </div>
                 </div>
@@ -205,37 +208,116 @@
     @include('partials.script')
 </body>
 <script>
+     var table;
 $(document).ready(function() {
     // alert("Checking")
     $("#o_mode").hide();
-    $("#addfield").click(function() {
-        var newRowAdd =
-            '<div id="row" class="row"><div class="input-group m-3">' +
-            '<div class="col-3"><div class="input-group-prepend">' +
-            '<button type="button" id="DeleteRow" class="btn btn-outline-danger waves-effect waves-light m-1">Delete</button>' +
-            '<i class="bi bi-trash"></i></button></div> </div>' +
-            '<div class="col-4"><div class="input-group-prepend m-1"><input class="form-control" type="text" placeholder="Additional Field"></div> </div><div class="col-1"></div>' +
-            '<div class="col-4"><select class="form-control " data-trigger name="choices-single-default" id="choices-single-default" placeholder=""><option>String</option><option>Number</option><option>Text</option></select> </div> </div>' +
-            '';
 
-        $('#fields').append(newRowAdd);
-        // alert("The paragraph was clicked.");
-    });
 
 
     $("body").on("click", "#DeleteRow", function() {
         $(this).parents("#row").remove();
     })
-    $('#myTable').DataTable({
-        dom: 'Bfrtip',
+    table = $('#myTable').DataTable({
+            dom: 'Bfrtip',
 
 
-        buttons: ['copy', 'excel', 'csv', 'pdf', 'print']
+            buttons: ['copy', 'excel', 'csv', 'pdf', 'print']
 
+        });
+
+        fetchtable();
+});
+
+function submit() {
+    var formdata = new FormData();
+    formdata.append("username", $('#u_name').val());
+    formdata.append("email", $('#u_email').val());
+    formdata.append("user_type", $('#u_type').val());
+    formdata.append("organization_name", $('#o_name').val());
+    formdata.append("office_location", $('#o_location').val());
+    formdata.append("role", $('#u_role').val());
+    formdata.append("created_by", "1");
+    formdata.append("password_hash", $('#password').val());
+
+
+    var settings = {
+        "url": "api/users",
+        "method": "POST",
+        "timeout": 0,
+        "processData": false,
+        "mimeType": "multipart/form-data",
+        "contentType": false,
+        "data": formdata
+    };
+
+
+    $.ajax({
+        ...settings,
+        statusCode: {
+            200: function(response) {
+                console.log(response);
+                // $('#myModal').modal('hide');
+                
+                // console.log("Request was successful");
+                fetchtable();
+
+                Swal.fire(
+                    'Success!',
+                    'Users Created Successfully',
+                    'success'
+                )
+
+            },
+            // Add more status code handlers as needed
+        },
+        success: function(data) {
+            // Additional success handling if needed
+        },
+        error: function(xhr, textStatus, errorThrown) {
+            Swal.fire(
+                'Server Error!',
+                'Users Not Created',
+                'error'
+            )
+
+            // console.log("Request failed with status code: " + xhr.status);
+        }
     });
 
+}
 
-});
+function fetchtable() {
+        var settings = {
+            "url": "api/users",
+            "method": "GET",
+            "timeout": 0,
+        };
+
+        $.ajax(settings).done(function(response) {
+            console.log(response);
+            table.clear().draw();
+            $.each(response, function(index, data) {
+                table.row.add([
+                    index + 1,
+                    data.username,
+                    data.email,
+                    '**************',
+                    data.user_type,
+                    data.role,
+                    data.organization_name,
+                    data.office_location,
+                    '<a type="button"id="edit" name="edit"  href="Userss/'+data.id +'" target="_blank" class="btn btn-soft-success waves-effect waves-light"><i class="bx bxs-show font-size-16 align-middle"></i></a>',
+                    '<button type="button"id="edit" name="edit"  onclick="editData(' +
+                    data.id +
+                    ')"  class="btn btn-soft-warning waves-effect waves-light"><i class="bx bx-edit-alt font-size-16 align-middle"></i></button>',
+                    '<button type="button" id="delete" name="delete" onclick="deleteData(' +
+                    data.id +
+                    ')" class="btn btn-soft-danger waves-effect waves-light"><i class="bx bx-trash-alt font-size-16 align-middle"></i></button>'
+                ]).draw(false);
+            });
+        });
+    }
 
 function check_type(val) {
     if (val === "Organization") {

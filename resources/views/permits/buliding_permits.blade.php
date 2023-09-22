@@ -136,7 +136,7 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="mb-3">
-                            <label for="formrow-firstname" class="form-label"> Project</label>
+                            <label for="formrow-firstname" class="form-label"> Properties</label>
                             <!-- <input type="text" class="form-control" id="name" name='name'> -->
                             <select class="form-control select_" name="choices-single-default" id="project"
                                 name='project' placeholder="This is a search placeholder">
@@ -220,7 +220,7 @@
                             <input type="file" class="form-control" id="owner_doc" name='owner_doc'>
                         </div>
                     </div>
-              
+
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-Latitude" class="form-label">Drawing Doc</label>
@@ -259,8 +259,8 @@
                         </div>
                     </div>
                 </div>
-                
-                
+
+
                 <div class="col-12">
                     <div class="mb-3 row">
                         {{-- <label for="example-text-input" class="col-md-2 col-form-label">Domain Members</label> --}}
@@ -294,18 +294,11 @@ var type;
 var subtype;
 $(document).ready(function() {
 
-    new Choices("#project", {
-        removeItemButton: !0,
-    })
-    new Choices("#permit_type", {
-        removeItemButton: !0,
-    })
-    new Choices("#permit_status", {
-        removeItemButton: !0,
-    })
-    new Choices("#applicant", {
-        removeItemButton: !0,
-    })
+    load_all_select();
+
+    
+    
+    
     new Choices("#development", {
         removeItemButton: !0,
     })
@@ -560,6 +553,83 @@ function deleteData(id) {
             )
 
             // console.log("Request failed with status code: " + xhr.status);
+        }
+    });
+}
+
+function load_all_select() {
+    $.ajax({
+        url: "api/projects",
+        type: 'GET',
+        dataType: 'json',
+        success: function(response) {
+            console.log('response');
+            console.log(response);
+            type = new Choices("#project", {
+                removeItemButton: !0,
+            })
+            type.clearChoices();
+            console.log(response);
+            type.setChoices(response,
+                'Id',
+                'project_name',
+                false, );
+        }
+    });
+
+    $.ajax({
+        url: "api/permmit_type",
+        type: 'GET',
+        dataType: 'json',
+        success: function(response) {
+            console.log('response');
+            console.log(response);
+            type = new Choices("#permit_type", {
+                removeItemButton: !0,
+            })
+            type.clearChoices();
+            console.log(response);
+            type.setChoices(response,
+                'id',
+                'type',
+                false, );
+        }
+    });
+
+    $.ajax({
+        url: "api/users",
+        type: 'GET',
+        dataType: 'json',
+        success: function(response) {
+            console.log('response');
+            console.log(response);
+            type = new Choices("#applicant", {
+                removeItemButton: !0,
+            })
+            type.clearChoices();
+            console.log(response);
+            type.setChoices(response,
+                'user_id',
+                'username',
+                false, );
+        }
+    });
+    $.ajax({
+        url: "api/permmit_status",
+        type: 'GET',
+        dataType: 'json',
+        success: function(response) {
+            console.log('response');
+            console.log(response);
+            type = new Choices("#permit_status", {
+                removeItemButton: !0,
+            })
+            type.clearChoices();
+            console.log(response);
+            type.setChoices(response,
+                'id',
+                'status',
+                false, );
         }
     });
 }

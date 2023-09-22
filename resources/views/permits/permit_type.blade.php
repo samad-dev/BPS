@@ -119,7 +119,7 @@
                             <div class="mb-3 row">
                                 <label for="example-text-input" class="col-md-2 col-form-label">Name</label>
                                 <div class="col-md-10">
-                                    <input class="form-control" type="text" placeholder="Enter Permit Type Title" id="example-text-input">
+                                    <input class="form-control" type="text" placeholder="Enter Permit Type Title" id="pertmit_type" name="pertmit_type">
                                 </div>
                             </div>
                         </div>
@@ -173,7 +173,7 @@
 
     function fetchtable() {
         var settings = {
-            "url": "api/priority",
+            "url": "api/permmit_type",
             "method": "GET",
             "timeout": 0,
         };
@@ -183,9 +183,7 @@
             $.each(response, function(index, data) {
                 table.row.add([
                     index + 1,
-                    data.company,
-                    data.title,
-                    data.sla,
+                    data.type,
                     '<button type="button"id="edit" name="edit"  onclick="editData(' +
                     data.id +
                     ')"  class="btn btn-soft-warning waves-effect waves-light"><i class="bx bx-edit-alt font-size-16 align-middle"></i></button>',
@@ -202,13 +200,11 @@
         console.log(update_id);
         if (update_id == 0) {
             var form = new FormData();
-            form.append("company_id", "0");
-            form.append("title", document.getElementById('example-text-input').value);
-            form.append("active", "1");
-            form.append("sla", document.getElementById('sla').value);
+            form.append("pertmit_type", $('#pertmit_type').val());
+            
 
             var settings = {
-                "url": "api/priority",
+                "url": "api/permmit_type",
                 "method": "POST",
                 "timeout": 0,
                 "processData": false,
@@ -223,7 +219,7 @@
                         console.log(response);
                         $('#myModal').modal('hide');
                         console.log("Request was successful");
-                        document.getElementById('example-text-input').value = "";
+                        // document.getElementById('example-text-input').value = "";
                         document.getElementById('hidden').value = "";
                         fetchtable();
                         Swal.fire(
