@@ -12,7 +12,7 @@
     {{-- <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" /> --}}
     <meta content="Themesdesign" name="author" />
     <!-- App favicon -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 
 
     @include('partials.style')
@@ -296,9 +296,9 @@ $(document).ready(function() {
 
     load_all_select();
 
-    
-    
-    
+
+
+
     new Choices("#development", {
         removeItemButton: !0,
     })

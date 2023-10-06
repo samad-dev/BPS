@@ -28,6 +28,9 @@ Route::get('/index', function () {
 Route::get('/project', function () {
     return view('projects/project');
 });
+Route::get('/new_project', function () {
+    return view('projects/new_project');
+});
 Route::get('/permit_status', function () {
     return view('permits/permit_status');
 });

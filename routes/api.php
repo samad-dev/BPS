@@ -15,7 +15,7 @@ Route::get('users/{user_id}', 'UserController@show');
 Route::put('users/{user_id}', 'UserController@update');
 Route::delete('users/{user_id}', 'UserController@destroy');
 // Route::resource('projects', ProjectController::class);
-Route::resource('building_permits', BuildingPermitController::class);
+// Route::resource('building_permits', BuildingPermitController::class);
 
 
 Route::get('projects', [ ProjectController::class,'index']);
@@ -27,3 +27,6 @@ Route::post('permmit_status', [ Permit_status::class,'store']);
 
 Route::get('permmit_type', [ PermittypeController::class,'index']);
 Route::post('permmit_type', [ PermittypeController::class,'store']);
+
+Route::get('building_permits', [ BuildingPermitController::class,'index']);
+Route::post('building_permits', [ BuildingPermitController::class,'store']);

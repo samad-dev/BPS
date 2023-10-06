@@ -51,6 +51,7 @@
  <script src="{{ asset('assets/js/pages/sweet-alerts.init.js') }}"></script>
  <script src="{{ asset('assets/js/pages/form-validation.init.js') }}"></script>
  <script src="{{ asset('assets/libs/flatpickr/flatpickr.min.js') }}"></script>
+ <script src="{{ asset('assets/js/pages/form-wizard.init.js') }}"></script>
 
           
 {{-- <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.js"></script> --}}
