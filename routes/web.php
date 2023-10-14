@@ -16,6 +16,10 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::get('/', function () {
+    return view('auth/landing');
+});
+
+Route::get('/login', function () {
     return view('auth/login');
 });
 

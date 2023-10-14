@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Database\QueryException;
 
 class BuildingPermitController extends \Illuminate\Routing\Controller
 {
@@ -147,5 +146,16 @@ class BuildingPermitController extends \Illuminate\Routing\Controller
     {
         DB::delete('DELETE FROM building_permits WHERE id = ?', [$id]);
         return response()->json(['message' => 'Building permit deleted successfully']);
+    }
+
+    public function applicant_property($id)
+    {
+
+        $user = DB::select("SELECT * FROM bps.users as us 
+        join building_permits as bp on bp.applicant_id=us.user_id
+        join projects as pp on pp.id=bp.project_id
+        join permit_status as ps on ps.id=bp.permit_status
+        join pertmit_type as tt on tt.id=bp.permit_type where us.user_id=$id");
+        return response()->json($user);
     }
 }
