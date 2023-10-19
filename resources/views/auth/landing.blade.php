@@ -89,7 +89,7 @@ input[type="file"]::file-selector-button:active {
                         <div class="col-12 col-md-6 dtr-py-100 dtr-sm-p-50 dtr-px-100">
 
                             <!-- intro text -->
-                            <h1>Welcome to Building Permit System</h1>
+                            <h1>Welcome to CSSP metaverse</h1>
                             <!-- button 1 -->
                             <a href="/logins"
                                 class="dtr-btn dtr-btn-right-icon dtr-mt-30 dtr-mr-5 btn-dark-blue">Login<span

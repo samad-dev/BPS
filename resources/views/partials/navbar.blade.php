@@ -3,20 +3,24 @@
     <!-- LOGO -->
     <div class="navbar-brand-box">
         <a href="/dashboard" class="logo logo-dark">
-            <span class="logo-sm">
-                <img src="{{ asset('assets/images/logo-dark-sm.png') }}" alt="" height="26">
+            <span class="logo-sm text-light">
+                <!-- <img src="{{ asset('assets/images/logo-dark-sm.png') }}" alt="" height="26"> -->
+                CSSP
             </span>
-            <span class="logo-lg">
-                <img src="{{ asset('assets/images/logo-dark.png') }}" alt="" height="28">
+            <span class="logo-lg text-light">
+                <!-- <img src="{{ asset('assets/images/logo-dark.png') }}" alt="" height="28"> -->
+                CSSP
             </span>
         </a>
 
         <a href="/dashboard" class="logo logo-light">
-            <span class="logo-lg">
-                <img src="{{ asset('assets/images/logo-light.png') }}" alt="" height="30">
+            <span class="logo-lg text-light">
+                <!-- <img src="{{ asset('assets/images/logo-light.png') }}" alt="" height="30"> -->
+                CSSP
             </span>
-            <span class="logo-sm">
-                <img src="{{ asset('assets/images/logo-light-sm.png') }}" alt="" height="26">
+            <span class="logo-sm text-light">
+                <!-- <img src="{{ asset('assets/images/logo-light-sm.png') }}" alt="" height="26"> -->
+                CSSP
             </span>
         </a>
     </div>

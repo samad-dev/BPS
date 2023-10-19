@@ -35,17 +35,18 @@
                 <div class="row justify-content-center my-auto">
                     <div class="col-md-8 col-lg-6 col-xl-5">
 
-                        <div class="mb-4 pb-2">
-                            <a href="index.html" class="d-block auth-logo">
-                                <!-- <img src="assets/images/logo-dark.png" alt="" height="30"
-                                    class="auth-logo-dark me-start">
-                                <img src="assets/images/logo-light.png" alt="" height="30"
-                                    class="auth-logo-light me-start"> -->
-                                <h1>BPS</h1>
-                            </a>
-                        </div>
+                        
 
                         <div class="card">
+                        <div class="mb-4 pb-2">
+                            <a href="index.html" class="d-block auth-logo">
+                                <img src="assets/images/cssp_logo.jpeg" alt="" height="100"
+                                    class="auth-logo-dark me-start">
+                                <img src="assets/images/cssp_logo.jpeg" alt="" height="100"
+                                    class="auth-logo-light me-start">
+                                <!-- <h1>BPS</h1> -->
+                            </a>
+                        </div>
                             <div class="card-body p-4">
                                 <div class="text-center mt-2">
                                     <h5>Welcome Back !</h5>
@@ -72,9 +73,9 @@
 
                                         <div class="mb-3">
                                             <div class="float-end">
-                                                <a href="auth-recoverpw.html"
+                                                <!-- <a href="auth-recoverpw.html"
                                                     class="text-muted text-decoration-underline">Forgot
-                                                    password?</a>
+                                                    password?</a> -->
                                             </div>
                                             <label class="form-label" for="password-input">Password</label>
                                             <div class="position-relative auth-pass-inputgroup input-custom-icon">
@@ -94,12 +95,12 @@
                                         @enderror
                                         </div>
 
-                                        <div class="form-check py-1">
+                                        <!-- <div class="form-check py-1">
                                             <input type="checkbox" class="form-check-input"
                                                 id="auth-remember-check">
                                             <label class="form-check-label" for="auth-remember-check">Remember
                                                 me</label>
-                                        </div>
+                                        </div> -->
 
                                         <div class="mt-3">
                                             <button class="btn btn-primary w-100 waves-effect waves-light"
@@ -126,7 +127,7 @@
                                     document.write(new Date().getFullYear())
                                 </script> BPS <i
                                     class="mdi mdi-heart text-danger"></i> by <a
-                                    href="https://1.envato.market/themesdesign" target="_blank">P2P Track</a>
+                                    href="https://1.envato.market/themesdesign" target="_blank">P2P Track 360</a>
                             </p>
                         </div>
                     </div>

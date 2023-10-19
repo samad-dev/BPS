@@ -28,7 +28,7 @@
 
             <!-- start page title -->
             <div class="page-title-box align-self-center d-none d-md-block">
-                <h4 class="page-title mb-0">Welcome to Building Permit System</h4>
+                <h4 class="page-title mb-0">Welcome to CSSP metaverse</h4>
             </div>
             <!-- end page title -->
 
@@ -36,9 +36,9 @@
 
         <div class="d-flex">
 
-            
 
-            <div class="dropdown d-inline-block">
+
+            <!-- <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item noti-icon"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="bx bx-search icon-sm align-middle"></i>
@@ -53,26 +53,28 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            </div> -->
 
-            
+
 
             <div class="dropdown d-inline-block">
-                <button type="button" class="btn header-item user text-start d-flex align-items-center" id="page-header-user-dropdown-v"
-                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded-circle header-profile-user" src="{{ asset('assets/images/users/avatar-3.jpg') }}"
-                    alt="Header Avatar">
-                    <span class="d-none d-xl-inline-block ms-2 fw-medium font-size-15">Admin</span>
+                <button type="button" class="btn header-item user text-start d-flex align-items-center"
+                    id="page-header-user-dropdown-v" data-bs-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <img class="rounded-circle header-profile-user" src="{{ asset('assets/images/user_icon.png') }}"
+                        alt="Header Avatar">
+                    <span class="d-none d-xl-inline-block ms-2 fw-medium font-size-15">{{ Auth::user()->role }}</span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end pt-0">
                     <div class="p-3 border-bottom">
                         <h6 class="mb-0">{{ Auth::user()->name }}</h6>
                         <p class="mb-0 font-size-11 text-muted">{{ Auth::user()->email }}</p>
                     </div>
-                    <a class="dropdown-item" href="contacts-profile.html"><i class="mdi mdi-account-circle text-muted font-size-16 align-middle me-2"></i> <span class="align-middle">Profile</span></a>
+                    <!-- <a class="dropdown-item" href="contacts-profile.html"><i
+                            class="mdi mdi-account-circle text-muted font-size-16 align-middle me-2"></i> <span
+                            class="align-middle">Profile</span></a> -->
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();sessionStorage.clear();"><i
                             class="mdi mdi-logout text-muted font-size-16 align-middle me-2"></i> <span
                             class="align-middle">Logout</span></a>
