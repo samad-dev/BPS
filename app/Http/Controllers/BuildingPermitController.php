@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
 
 class BuildingPermitController extends \Illuminate\Routing\Controller
 {
@@ -179,26 +181,32 @@ class BuildingPermitController extends \Illuminate\Routing\Controller
         if ($existingUser) {
             // User already exists, return their ID and a status code (0 for existing user)
             return response()->json([
-                'user_id' => $existingUser->user_id,
+                'user_id' => $existingUser->id,
+                'name' => $existingUser->name,
+                'email' => $existingUser->email,
                 'status' => 0,
             ]);
         } else {
             // User doesn't exist, insert a new user into the database
+            $hashedPassword = Hash::make($email . '12345');
+
             $newUserId = DB::table('users')->insertGetId([
                 'user_type' => 'Individual',
                 'organization_name' => '',
                 'office_location' => '',
-                'username' => $email,
-                'password_hash' => $email . '12345',
+                'name' => $email,
+                'password' => $hashedPassword,
                 'email' => $email,
                 'role' => 'End-user',
                 'created_by' => '',
                 'created_at' => now(),
             ]);
-
+            echo $newUserId;
             // Return the new user's ID and a status code (1 for new user)
             return response()->json([
                 'user_id' => $newUserId,
+                'name' => $email,
+                'email' => $email,
                 'status' => 1,
             ]);
         }
@@ -210,8 +218,15 @@ class BuildingPermitController extends \Illuminate\Routing\Controller
 
         $data = $request->all();
         $user = $this->applicant_users($data['applicant']);
-
-        $userId = $user->user_id;
+        $stt = json_encode($user);
+        // echo $stt;
+        $val = json_decode($stt);
+        $userId = $val->original->user_id;
+        $username = $val->original->name;
+        $user_emails = $val->original->email;
+        // $type = gettype($user);
+        // echo $type;
+        // $userId = $user->original->user_id;
 
         $ownership_doc = $request->file('ownership_doc');
         $ownership_docfileName = time() . '_' . $ownership_doc->getClientOriginalName();
@@ -307,6 +322,18 @@ class BuildingPermitController extends \Illuminate\Routing\Controller
                     now()
                 ]
             );
+            $data = array('name' => $username);
+
+
+
+            Mail::send([], [], function ($message) use ($user_emails, $username) {
+                $message->to($user_emails, $username)
+                    ->subject('Welcome to CSSP')
+                    ->setBody('Hello, ' . $username . '! Your Permit applied Successfully. Please Login with Email : ' . $user_emails . ' and Password : ' . $user_emails . '12345', 'text/html');
+            });
+
+            $data = array('name' => "Virat Gandhi");
+
 
             return response()->json([
                 'message' => 'Property created successfully',

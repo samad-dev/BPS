@@ -36,7 +36,7 @@
 </head>
 <style>
 /* file upload button */
-input[type="file"]::file-selector-button {
+input[type="file" accept=".pdf"]::file-selector-button {
     border-radius: 4px;
     padding: 0 16px;
     height: 40px;
@@ -49,13 +49,13 @@ input[type="file"]::file-selector-button {
 }
 
 /* file upload button hover state */
-input[type="file"]::file-selector-button:hover {
+input[type="file" accept=".pdf"]::file-selector-button:hover {
     background-color: #f3f4f6;
     border: #1e247e 2px solid;
 }
 
 /* file upload button active state */
-input[type="file"]::file-selector-button:active {
+input[type="file" accept=".pdf"]::file-selector-button:active {
     background-color: #e5e7eb;
 }
 
@@ -193,7 +193,7 @@ input[type="file"]::file-selector-button:active {
                                                                     <div class="form-group">
                                                                         <label>Ownership Docs</label>
                                                                         <div class="custom-file">
-                                                                            <input type="file" class=""
+                                                                            <input type="file" accept=".pdf" class=""
                                                                                 id="ownership_doc">
                                                                             <!-- <label class="custom-file-label"
                                                                                 for="customFile">Select file</label> -->
@@ -399,7 +399,7 @@ input[type="file"]::file-selector-button:active {
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label>Fee Paid</label>
-                                                                        <input id="fee_paid" type="file" name="fee_paid"
+                                                                        <input id="fee_paid" type="number" name="fee_paid"
                                                                             placeholder="">
                                                                     </div>
                                                                 </div>
@@ -407,7 +407,7 @@ input[type="file"]::file-selector-button:active {
                                                                     <div class="form-group">
                                                                         <label>Fee Slip</label>
                                                                         <div class="custom-file">
-                                                                            <input type="file" class="" id="fee_slip">
+                                                                            <input type="file" accept=".pdf" class="" id="fee_slip">
                                                                             <!-- <label class="custom-file-label"
                                                                                 for="customFile">Select file</label> -->
                                                                         </div>
@@ -432,7 +432,7 @@ input[type="file"]::file-selector-button:active {
                                                                     <div class="form-group">
                                                                         <label>Drawing Docs</label>
                                                                         <div class="custom-file">
-                                                                            <input type="file" class=""
+                                                                            <input type="file" accept=".pdf" class=""
                                                                                 id="drawing_doc">
                                                                             <!-- <label class="custom-file-label"
                                                                                 for="customFile">Select file</label> -->
@@ -443,7 +443,7 @@ input[type="file"]::file-selector-button:active {
                                                                     <div class="form-group">
                                                                         <label>Structure Drawing Docs</label>
                                                                         <div class="custom-file">
-                                                                            <input type="file" class="" id="st_drawing">
+                                                                            <input type="file" accept=".pdf" class="" id="st_drawing">
                                                                             <!-- <label class="custom-file-label"
                                                                                 for="customFile">Select file</label> -->
                                                                         </div>
@@ -453,7 +453,7 @@ input[type="file"]::file-selector-button:active {
                                                                     <div class="form-group">
                                                                         <label>Soil Docs</label>
                                                                         <div class="custom-file">
-                                                                            <input type="file" class="" id="soil_doc">
+                                                                            <input type="file" accept=".pdf" class="" id="soil_doc">
                                                                             <!-- <label class="custom-file-label"
                                                                                 for="customFile">Select file</label> -->
                                                                         </div>
@@ -463,7 +463,7 @@ input[type="file"]::file-selector-button:active {
                                                                     <div class="form-group">
                                                                         <label>Fire Docs</label>
                                                                         <div class="custom-file">
-                                                                            <input type="file" class="" id="fire_doc">
+                                                                            <input type="file" accept=".pdf" class="" id="fire_doc">
                                                                             <!-- <label class="custom-file-label"
                                                                                 for="customFile">Select file</label> -->
                                                                         </div>
@@ -473,7 +473,7 @@ input[type="file"]::file-selector-button:active {
                                                                     <div class="form-group">
                                                                         <label>Agency Docs</label>
                                                                         <div class="custom-file">
-                                                                            <input type="file" class="" id="agency_doc">
+                                                                            <input type="file" accept=".pdf" class="" id="agency_doc">
                                                                             <!-- <label class="custom-file-label"
                                                                                 for="customFile">Select file</label> -->
                                                                         </div>
@@ -483,7 +483,7 @@ input[type="file"]::file-selector-button:active {
                                                                     <div class="form-group">
                                                                         <label>Integrity Docs</label>
                                                                         <div class="custom-file">
-                                                                            <input type="file" id="integrity_doc">
+                                                                            <input type="file" accept=".pdf" id="integrity_doc">
                                                                             <!-- <label class="custom-file-label"
                                                                                 for="customFile">Select file</label> -->
                                                                         </div>

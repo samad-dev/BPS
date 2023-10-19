@@ -39,7 +39,7 @@ Route::group(['middleware' => CorsMiddleware::class,'handle'], function () {
     Route::get('project_list', [ BuildingPermitController::class,'project_list']);
     Route::post('building_permits', [ BuildingPermitController::class,'store']);
     
-    Route::post('building_permits_applicant', [ BuildingPermitController::class,'storedata']);
+    Route::post('building_permits_applicant', [ BuildingPermitController::class,'applicant_store']);
 
     Route::get('applicant_propery/{user_id}', [ BuildingPermitController::class,'applicant_property']);
     
