@@ -179,7 +179,7 @@
                                     <option value=""></option>
                                     <option value="Admin">Admin</option>
                                     <option value="Inspector">Inspector</option>
-                                    <option value="End-User">Client</option>
+                                    <option value="End-user">Client</option>
                                 </select>
                             </div>
                         </div>
@@ -300,7 +300,7 @@ function fetchtable() {
             $.each(response, function(index, data) {
                 table.row.add([
                     index + 1,
-                    data.username,
+                    data.name,
                     data.email,
                     '**************',
                     data.user_type,

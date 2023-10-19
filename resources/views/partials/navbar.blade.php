@@ -31,37 +31,43 @@
         <div id="sidebar-menu">
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
-                <li class="menu-title" data-key="t-menu">Dashboard</li>
+                <!-- <li class="menu-title" data-key="t-menu">Dashboard</li> -->
 
 
                 <li class="menu-title" data-key="t-applications">Setup</li>
 
-                <li>
+                <!-- <li>
                     <a href="/vendor-types">
                         <i class="mdi mdi-view-week icon nav-icon"></i>
                         <span class="menu-item" data-key="t-calendar">Dashboard</span>
                     </a>
+                </li> -->
+
+                <li>
+                    <a href="/permit_status">
+                        <i class="mdi mdi-view-week icon nav-icon"></i>
+                        <span class="menu-item" data-key="t-calendar">Permit Status</span>
+                    </a>
                 </li>
-
-
-                <li class="">
+                <li>
+                    <a href="/permit_type">
+                        <i class="mdi mdi-view-week icon nav-icon"></i>
+                        <span class="menu-item" data-key="t-calendar">Permit Type</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/building_permits">
+                        <i class="mdi mdi-view-week icon nav-icon"></i>
+                        <span class="menu-item" data-key="t-calendar">Permit Permits</span>
+                    </a>
+                </li>
+                <!-- <li class="">
                     <a href="javascript: void(0);" class="has-arrow mm-collapsed" aria-expanded="false">
                         <i class="bx bx-share-alt icon nav-icon"></i>
                         <span class="menu-item" data-key="t-multi-level">Modules</span>
                     </a>
                     <ul class="sub-menu mm-collapse" aria-expanded="true" style="">
-                        <!-- <li class="disabled"><a href="/Permission" data-key="t-disabled-item">Development permit</a>
-                        </li> -->
-
-                        <!-- <li class=""><a href="javascript: void(0);" class="has-arrow mm-collapsed"
-                                data-key="t-level-1.2" aria-expanded="false">Development permit</a>
-                            <ul class="sub-menu mm-collapse" aria-expanded="true" style="">
-                                <li><a href="/permit_status" data-key="t-level-2.1">Permit Status</a></li>
-                                <li><a href="/permit_type" data-key="t-level-2.2">Permit Type</a></li>
-                                <li><a href="/development_permits" data-key="t-level-2.2">Building Permits</a></li>
-
-                            </ul>
-                        </li> -->
+                       
                         <li class=""><a href="javascript: void(0);" class="has-arrow mm-collapsed"
                                 data-key="t-level-1.2" aria-expanded="false">Permit</a>
                             <ul class="sub-menu mm-collapse" aria-expanded="true" style="">
@@ -72,56 +78,53 @@
                             </ul>
                         </li>
                     </ul>
-                </li>
-                <li class="">
-                    <a href="javascript: void(0);" class="has-arrow mm-collapsed" aria-expanded="false">
+                </li> -->
+                <!-- <li class="">
+                    <a href="/team" >
                         <i class="bx bx-user-circle icon nav-icon"></i>
                         <span class="menu-item" data-key="t-contacts">Teams</span>
                     </a>
-                    <ul class="sub-menu mm-collapse" aria-expanded="false" style="">
-                        <li><a href="/team" data-key="t-user-grid">Teams</a></li>
-                        <li><a href="/assign_user_team" data-key="t-user-grid">Assign users to Teams</a></li>
-
-
-                    </ul>
+                   
+                </li> -->
+                <li class="">
+                    <a href="/assign_user_team" >
+                        <i class="bx bx-user-circle icon nav-icon"></i>
+                        <span class="menu-item" data-key="t-contacts">Assign users to Teams</span>
+                    </a>
+                   
                 </li>
                 <li class="">
-                    <a href="javascript: void(0);" class="has-arrow mm-collapsed" aria-expanded="false">
+                    <a href="/assign_team_user" class="has-arrow mm-collapsed" aria-expanded="false">
                         <i class="bx bx-user-circle icon nav-icon"></i>
-                        <span class="menu-item" data-key="t-contacts">Inspection</span>
+                        <span class="menu-item" data-key="t-contacts">Assign users or Teams to Inspection</span>
                     </a>
-                    <ul class="sub-menu mm-collapse" aria-expanded="false" style="">
-
-                        <li><a href="/assign_team_user" data-key="t-user-grid">Assign users or Teams to Inspection</a>
-                        </li>
-
-                    </ul>
+                    
                 </li>
-                <li>
+                <!-- <li>
                     <a href="/project">
                         <i class="mdi mdi-list-status icon nav-icon"></i>
                         <span class="menu-item" data-key="t-calendar">Properties</span>
                     </a>
-                </li>
+                </li> -->
                 <li>
-                    <a href="/status">
+                    <a href="/map">
                         <i class="mdi mdi-list-status icon nav-icon"></i>
                         <span class="menu-item" data-key="t-calendar">Map</span>
                     </a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="/priority">
                         <i class="mdi mdi-priority-high icon nav-icon"></i>
                         <span class="menu-item" data-key="t-calendar">Task</span>
                     </a>
-                </li>
-                <li>
+                </li> -->
+                <!-- <li>
                     <a href="/impact">
                         <i class="mdi mdi-shuriken icon nav-icon"></i>
                         <span class="menu-item" data-key="t-calendar">Inspection Teams</span>
                     </a>
-                </li>
-                <li>
+                </li> -->
+                <!-- <li>
                     <a href="/bu">
                         <i class="mdi mdi-hexagon-multiple icon nav-icon"></i>
                         <span class="menu-item" data-key="t-calendar">Permission</span>
@@ -132,7 +135,7 @@
                         <i class="mdi mdi-account-group-outline icon nav-icon"></i>
                         <span class="menu-item" data-key="t-calendar">Roles</span>
                     </a>
-                </li>
+                </li> -->
                 <li>
                     <a href="/user">
                         <i class="fas fa-cubes icon nav-icon"></i>

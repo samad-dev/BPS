@@ -78,7 +78,6 @@
                                                 <th>Inspection Type</th>
                                                 <th>Inspection Date</th>
                                                 <th>Inspector</th>
-                                                <th>Team</th>
                                                 <th>Inspection Result</th>
                                                 <th>Note</th>
                                                 <th>Edit</th>
@@ -129,10 +128,16 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="mb-3">
-                            <label for="formrow-firstname" class="form-label"> Permit</label>
+                            <label for="formrow-firstname" class="form-label">Permit</label>
                             <!-- <input type="text" class="form-control" id="name" name='name'> -->
+
                             <select class="form-control select_" name="choices-single-default" id="permit" name='permit'
                                 placeholder="This is a search placeholder">
+                                <option value=""></option>
+                                <option value="pre_production">Pre-Production</option>
+                                <option value="during_production">During-Production</option>
+                                <option value="post_production">Post-Production</option>
+
 
                             </select>
                         </div>
@@ -158,14 +163,14 @@
                             <input type="date" class="form-control" placeholder="Enter Problem" id="title">
                         </div>
                     </div>
-                    <div class="square-switch">
+                    <!-- <div class="square-switch">
                         <input type="checkbox" id="square-switch1" switch="none" checked="" onclick="myFunction()">
                         <label for="square-switch1" data-on-label="Indivisual" data-off-label="Team"
                             style="width: 100px;"></label>
-                    </div>
+                    </div> -->
                     <div class="col-lg-4">
                         <div class="mb-3 row">
-                            <label for="formrow-inputState" class="form-label">Individual / Team</label>
+                            <label for="formrow-inputState" class="form-label">Inspector</label>
                             <div class="col-md-12">
                                 <select class="form-control" id="i_team" name="i_team"
                                     placeholder="This is a search placeholder">
@@ -220,16 +225,16 @@ var subtype;
 var table;
 var resolved, due_date;
 $(document).ready(function() {
-    new Choices("#permit", {
-        removeItemButton: !0,
-    })
+    // new Choices("#permit", {
+    //     removeItemButton: !0,
+    // })
 
     new Choices("#inspection_type", {
         removeItemButton: !0,
     })
-    new Choices("#i_team", {
-        removeItemButton: !0,
-    })
+    // new Choices("#i_team", {
+    //     removeItemButton: !0,
+    // })
     resolved = flatpickr('#resolved', {});
     due_date = flatpickr('#due_date', {});
     $("#addfield").click(function() {
@@ -246,145 +251,38 @@ $(document).ready(function() {
         // alert("The paragraph was clicked.");
     });
 
+
     $.ajax({
-        url: "api/users/company/0",
+        url: "api/project_list",
         type: 'GET',
         dataType: 'json',
         success: function(response) {
-            assigned = new Choices("#assigned", {
-                removeItemButton: !0,
-            })
-            assigned.clearChoices();
-            console.log(response);
-            assigned.setChoices(response,
-                'id',
-                'name',
-                false, );
-
-            reported = new Choices("#reported", {
-                removeItemButton: !0,
-            })
-            reported.clearChoices();
-            console.log(response);
-            reported.setChoices(response,
-                'id',
-                'name',
-                false, );
-
-            marketing = new Choices("#marketing", {
-                removeItemButton: !0,
-            })
-            marketing.clearChoices();
-            console.log(response);
-            marketing.setChoices(response,
-                'id',
-                'name',
-                false, );
-
-            manager = new Choices("#manager", {
-                removeItemButton: !0,
-            })
-            manager.clearChoices();
-            console.log(response);
-            manager.setChoices(response,
-                'id',
-                'name',
-                false, );
-
-            ticketresolved = new Choices("#ticketresolved", {
-                removeItemButton: !0,
-            })
-            ticketresolved.clearChoices();
-            console.log(response);
-            ticketresolved.setChoices(response,
-                'id',
-                'name',
-                false, );
-
-        }
-    });
-
-    $.ajax({
-        url: "api/types",
-        type: 'GET',
-        dataType: 'json',
-        success: function(response) {
-            type = new Choices("#type", {
+            type = new Choices("#permit", {
                 removeItemButton: !0,
             })
             type.clearChoices();
             console.log(response);
             type.setChoices(response,
-                'id',
-                'title',
+                'permit_id',
+                'project_name',
                 false, );
         }
     });
 
-    $.ajax({
-        url: "api/status/company/1",
-        type: 'GET',
-        dataType: 'json',
-        success: function(response) {
-            type = new Choices("#status", {
-                removeItemButton: !0,
-            })
-            type.clearChoices();
-            console.log(response);
-            type.setChoices(response,
-                'id',
-                'title',
-                false, );
-        }
-    });
 
     $.ajax({
-        url: "api/priority/company/0",
+        url: "api/inspectors",
         type: 'GET',
         dataType: 'json',
         success: function(response) {
-            type = new Choices("#priority", {
+            i_team = new Choices("#i_team", {
                 removeItemButton: !0,
             })
-            type.clearChoices();
+            i_team.clearChoices();
             console.log(response);
-            type.setChoices(response,
-                'id',
-                'title',
-                false, );
-        }
-    });
-
-    $.ajax({
-        url: "api/business_units",
-        type: 'GET',
-        dataType: 'json',
-        success: function(response) {
-            type = new Choices("#business", {
-                removeItemButton: !0,
-            })
-            type.clearChoices();
-            console.log(response);
-            type.setChoices(response,
+            i_team.setChoices(response,
                 'id',
                 'name',
-                false, );
-        }
-    });
-
-    $.ajax({
-        url: "api/impacts/company/0",
-        type: 'GET',
-        dataType: 'json',
-        success: function(response) {
-            type = new Choices("#impact", {
-                removeItemButton: !0,
-            })
-            type.clearChoices();
-            console.log(response);
-            type.setChoices(response,
-                'id',
-                'title',
                 false, );
         }
     });
@@ -482,36 +380,19 @@ $(document).ready(function() {
 
 function submit() {
     var form = new FormData();
-    form.append("title", document.getElementById("title").value);
-    form.append("description", document.getElementById("description").value);
-    form.append("completed_date", document.getElementById("resolved").value);
-    form.append("due_date", document.getElementById("due_date").value);
-    form.append("company_id", "0");
-    form.append("completed_by", document.getElementById("ticketresolved").value);
-    form.append("business_unit_id", document.getElementById("business").value);
-    form.append("vendor_id", "0");
-    form.append("vendor_type_id", "0");
-    form.append("reported_by", document.getElementById("reported").value);
-    form.append("assigned_to", document.getElementById("assigned").value);
-    form.append("mode_of_complaint", document.getElementById("moc").value);
-    form.append("sub_type_id", document.getElementById("subtype").value);
-    form.append("priority_id", document.getElementById("priority").value);
-    form.append("impact_id", document.getElementById("impact").value);
-    form.append("status_id", document.getElementById("status").value);
-    form.append("store_contact", document.getElementById("store_info").value);
-    form.append("created_by", "1");
-    form.append("email_status", "0");
-    var checkBox1 = document.getElementById("square-switch1");
-    if (checkBox1.checked == true) {
-        // alert('checked');
-        form.append("assigned_type", "Individual");
-    } else {
-        // alert('unchecked')
-        form.append("assigned_type", "Group");
-    }
+    // alert(document.getElementById("i_team").value);
+    form.append("permit_id", document.getElementById("permit").value);
+    form.append("inspection_type", document.getElementById("inspection_type").value);
+    form.append("inspection_date", document.getElementById("title").value);
+    form.append("inspector_id", document.getElementById("i_team").value);
+    form.append("team_id", "");
+    form.append("inspection_result", "Approval");
+    form.append("notes", "_");
+
+
 
     var settings = {
-        "url": "api/tickets",
+        "url": "api/inspections",
         "method": "POST",
         "timeout": 0,
         "processData": false,
@@ -532,10 +413,11 @@ function submit() {
                 document.getElementById('hidden').value = "";
                 // console.log("Request was successful");
                 fetchtable();
+                // aler
 
                 Swal.fire(
                     'Success!',
-                    'Ticket Created Successfully',
+                    'Inspection Created Successfully',
                     'success'
                 )
 
@@ -546,9 +428,12 @@ function submit() {
             // Additional success handling if needed
         },
         error: function(xhr, textStatus, errorThrown) {
+            console.log(xhr);
+            console.log(textStatus);
+            console.log(errorThrown);
             Swal.fire(
                 'Server Error!',
-                'Ticket Not Created',
+                'Inspection Not Created',
                 'error'
             )
 
@@ -560,7 +445,7 @@ function submit() {
 
 function fetchtable() {
     var settings = {
-        "url": "api/tickets",
+        "url": "api/inspections",
         "method": "GET",
         "timeout": 0,
     };
@@ -571,11 +456,12 @@ function fetchtable() {
         $.each(response, function(index, data) {
             table.row.add([
                 index + 1,
-                data.title,
-                data.type_title,
-                data.created_at,
-                data.reported_by_name,
-                data.status_title,
+                data.project_name,
+                data.inspection_type,
+                data.inspection_date,
+                data.name,
+                data.inspection_result,
+                data.notes,
                 '<a type="button"id="edit" name="edit"  href="Tickets/' + data.id +
                 '" target="_blank" class="btn btn-soft-success waves-effect waves-light"><i class="bx bxs-show font-size-16 align-middle"></i></a>',
                 '<button type="button"id="edit" name="edit"  onclick="editData(' +

@@ -14,13 +14,14 @@
     <!-- App favicon -->
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     @include('partials.style')
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script
+    <!-- <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNyJWb04pByaU1CTmimoWNl3b86VV6qZ8&callback=initMap&libraries=drawing&v=weekly"
-        defer></script>
+        defer></script> -->
 </head>
 
 
@@ -55,15 +56,14 @@
                                             <h4 class="card-title mb-0 pt-3">Permits</h4>
                                         </div>
                                         <div class="col-md-6">
-                                            {{-- <button type="button" class="btn btn-soft-primary waves-effect waves-light"  data-bs-toggle="modal" data-bs-target="#myModal">
+                                            <!-- {{-- <button type="button" class="btn btn-soft-primary waves-effect waves-light"  data-bs-toggle="modal" data-bs-target="#myModal">
                                                      Add New
-                                                </button> --}}
-                                            <button class="btn btn-soft-primary waves-effect waves-light" type="button"
-                                                data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-                                                aria-controls="offcanvasRight"><i
+                                                </button> --}} -->
+                                            <a href='/new_project' class="btn btn-soft-primary waves-effect waves-light" type="button"
+                                                ><i
                                                     class="bx bxs-add-to-queue font-size-16 align-middle me-2"></i>Add
-                                                New</button>
-                                            {{-- <button type="button" class="btn btn-primary waves-effect waves-light">Add New</button> --}}
+                                                News</a>
+                                            <!-- {{-- <button type="button" class="btn btn-primary waves-effect waves-light">Add New</button> --}} -->
                                         </div>
                                     </div>
 
@@ -73,7 +73,17 @@
                                         <thead>
                                             <tr>
                                                 <th>S.No</th>
-                                                <th>Project</th>
+                                                <th>Property Name</th>
+                                                <th>Start Date</th>
+                                                <th>Complate Date</th>
+                                                <th>Ownership Doc</th>
+                                                <th>Estimated Cost</th>
+                                                <th>Location Name</th>
+                                                <th>Latitude</th>
+                                                <th>Longitude</th>
+                                                <th>Radius</th>
+                                                <th>Area</th>
+                                                <th>Status</th>
                                                 <th>Applicant</th>
                                                 <th>Permit Type</th>
                                                 <th>Permit Status</th>
@@ -81,7 +91,6 @@
                                                 <th>Approval Date</th>
                                                 <th>Expriry Date</th>
                                                 <th>Fee Paid</th>
-                                                <th>Owner Doc</th>
                                                 <th>Drawing Doc</th>
                                                 <th>Structure Drawing Doc</th>
                                                 <th>Soil Doc</th>
@@ -89,7 +98,7 @@
                                                 <th>Agency Doc</th>
                                                 <th>Integrity Doc</th>
                                                 <th>Created At</th>
-                                                <th>Created By</th>
+                                                <!-- <th>Created By</th> -->
                                                 <th>Edit</th>
                                                 <th>Delete</th>
                                             </tr>
@@ -310,12 +319,12 @@ $(document).ready(function() {
         buttons: ['copy', 'excel', 'csv', 'pdf', 'print']
 
     });
-    // fetchtable();
+    fetchtable();
 });
 
 function fetchtable() {
     var settings = {
-        "url": "api/vendors",
+        "url": "api/building_permits",
         "method": "GET",
         "timeout": 0,
     };
@@ -326,9 +335,35 @@ function fetchtable() {
         $.each(response, function(index, data) {
             table.row.add([
                 index + 1,
-                data.company,
+                data.project_name,
+                data.start_date,
+                data.completion_date,
+                // data.ownership_doc,
+                "<a class='btn btn-soft-warning waves-effect waves-light text-center' href='storage/"+data.ownership_doc+"' target='_blank'><i class='far fa-file-pdf' style='font-size: 24px;'></a>",
+                data.estimated_cost,
+                data.location_name,
+                data.latitude,
+                data.longitude,
+                data.radius,
+                data.area,
+                data.status,
                 data.name,
-                data.email,
+                data.name,
+                data.type,
+                data.status,
+                data.application_date,
+                data.approval_date,
+                data.expiration_date,
+                data.fees_paid,
+                data.fees_paid,
+                "<a class='btn btn-soft-warning waves-effect waves-light text-center' href='storage/"+data.draw_doc+"' target='_blank'><i class='far fa-file-pdf' style='font-size: 24px;'></a>",
+                "<a class='btn btn-soft-warning waves-effect waves-light text-center' href='storage/"+data.stdraw_doc+"' target='_blank'><i class='far fa-file-pdf' style='font-size: 24px;'></a>",
+                "<a class='btn btn-soft-warning waves-effect waves-light text-center' href='storage/"+data.fire_doc+"' target='_blank'><i class='far fa-file-pdf' style='font-size: 24px;'></a>",
+                "<a class='btn btn-soft-warning waves-effect waves-light text-center' href='storage/"+data.agency_doc+"' target='_blank'><i class='far fa-file-pdf' style='font-size: 24px;'></a>",
+                "<a class='btn btn-soft-warning waves-effect waves-light text-center' href='storage/"+data.integ_doc+"' target='_blank'><i class='far fa-file-pdf' style='font-size: 24px;'></a>",
+
+
+                data.created_at,
                 '<button type="button"id="edit" name="edit" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"  onclick="editData(' +
                 data.id +
                 ')"  class="btn btn-soft-warning waves-effect waves-light"><i class="bx bx-edit-alt font-size-16 align-middle"></i></button>',
@@ -634,7 +669,7 @@ function load_all_select() {
     });
 }
 </script>
-<script>
+<!-- <script>
 let map;
 var circle;
 
@@ -713,7 +748,7 @@ function onCircleComplete(shape) {
     document.getElementById("radius").value = radius;
     circle_point = [];
 }
-</script>
+</script> -->
 
 
 </html>

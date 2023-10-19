@@ -19,13 +19,13 @@ Route::get('/', function () {
     return view('auth/landing');
 });
 
-Route::get('/login', function () {
+Route::get('/logins', function () {
     return view('auth/login');
 });
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 
-
+Route::middleware(['auth'])->group(function () {
 Route::get('/index', function () {
     return view('dashboard/index');
 });
@@ -34,6 +34,9 @@ Route::get('/project', function () {
 });
 Route::get('/new_project', function () {
     return view('projects/new_project');
+});
+Route::get('/map', function () {
+    return view('projects/map');
 });
 Route::get('/permit_status', function () {
     return view('permits/permit_status');
@@ -114,4 +117,5 @@ Route::get('/designation', function () {
 });
 Route::get('/Company', function () {
     return view('company/index');
-});
+});});
+Auth::routes();

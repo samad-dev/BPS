@@ -13,8 +13,16 @@ class Login extends Controller
     public function login($email,$password)
     {
         try {
-        //    echo $hashedPassword = Hash::make($password);
-            $user = DB::select("SELECT * FROM bps.users where email='$email' and password_hash='$password'");
+            $hashedPassword = Hash::make($password);
+            
+            $user = DB::table('users')->where('email', $email)->first();
+
+            if (!$user || !Hash::check($password, $user->password)) {
+                return response()->json(['error' => 'Invalid credentials'], 401);
+            }
+
+
+            // $user = DB::select("SELECT * FROM bps.users where email='$email' and password='$hashedPassword'");
             return response()->json($user);
 
 
@@ -27,40 +35,26 @@ class Login extends Controller
         }
     }
 
-    public function store(Request $request)
+    public function system_login(Request $request)
     {
-        $data = $request->all();
-        $hashedPassword = Hash::make($data['password_hash']);
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-        DB::insert(
-            'INSERT INTO users ( user_type, organization_name, office_location, username, password_hash, email, role, created_by, created_at) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-            [$data['user_type'], $data['organization_name'], $data['office_location'], $data['username'], $hashedPassword, $data['email'], $data['role'], $data['created_by'], now()]
-        );
+        if ($validator->fails()) {
+            return response()->json(['error' => 'Validation failed'], 422);
+        }
 
-        return response()->json(['message' => 'User created successfully']);
-    }
+        $user = DB::table('users')->where('email', $request->email)->first();
 
-    public function show($user_id)
-    {
-        $user = DB::select('SELECT * FROM users WHERE user_id = ?', [$user_id]);
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            return response()->json(['error' => 'Invalid credentials'], 401);
+        }
+
+        // Generate API token if needed
+        // $token = $user->createToken('api-token')->plainTextToken;
+
         return response()->json($user);
-    }
-
-    public function update(Request $request, $user_id)
-    {
-        $data = $request->all();
-
-        DB::update(
-            'UPDATE users SET user_type = ?, organization_name = ?, office_location = ?, username = ?, email = ?, role = ?, created_by = ? WHERE user_id = ?',
-            [$data['user_type'], $data['organization_name'], $data['office_location'], $data['username'], $data['email'], $data['role'], $data['created_by'], $user_id]
-        );
-
-        return response()->json(['message' => 'User updated successfully']);
-    }
-
-    public function destroy($user_id)
-    {
-        DB::delete('DELETE FROM users WHERE user_id = ?', [$user_id]);
-        return response()->json(['message' => 'User deleted successfully']);
     }
 }

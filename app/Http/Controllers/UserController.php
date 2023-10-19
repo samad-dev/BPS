@@ -14,13 +14,20 @@ class UserController extends Controller
         return response()->json($users);
     }
 
+    public function inspectors()
+    {
+        $users = DB::select('SELECT * FROM users where role = "Inspector"');
+        return response()->json($users);
+    }
+
     public function store(Request $request)
     {
         $data = $request->all();
-        // $hashedPassword = Hash::make($data['password_hash']);
+        $hashedPassword = Hash::make($data['password_hash']);
 
-        DB::insert('INSERT INTO users ( user_type, organization_name, office_location, username, password_hash, email, role, created_by, created_at) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-            [ $data['user_type'], $data['organization_name'], $data['office_location'], $data['username'], $data['password_hash'], $data['email'], $data['role'], $data['created_by'], now()]);
+
+        DB::insert('INSERT INTO users ( user_type, organization_name, office_location, name, password, email, role, created_by, created_at) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            [ $data['user_type'], $data['organization_name'], $data['office_location'], $data['username'], $hashedPassword, $data['email'], $data['role'], $data['created_by'], now()]);
         
         return response()->json(['message' => 'User created successfully']);
     }

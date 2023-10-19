@@ -929,8 +929,8 @@ t" conten t="width=device-width, initial-scale=1.0">
                 type.clearChoices();
                 console.log(response);
                 type.setChoices(response,
-                    'user_id',
-                    'username',
+                    'id',
+                    'name',
                     false, );
             }
         });
